@@ -7,9 +7,10 @@ window.onload = function() {
     body: JSON.stringify({ url: window.location.href })
   })
   .then(response => {
-    return response.text();
+    return response.json();
   })
-  .then(summary => {
+  .then(data => {
+    const summary = data.summary
     // Store the summary
     chrome.storage.local.set({summary: summary});
   })
