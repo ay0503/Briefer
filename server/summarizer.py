@@ -1,8 +1,5 @@
 
-class Summary:
-
-    def __init__(self) -> None:
-        pass
-
-    def summarize(self, text: str) -> str:
-        pass
+""" this takes in a json object described and returns a
+    json object with the attribute summary as described """
+def summarize(html):
+    return
