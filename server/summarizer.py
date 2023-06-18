@@ -1,8 +1,8 @@
 import openai
+import os
 
-openai.api_key = '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'
-
-inputData = "https://www.cnn.com/travel/article/luggage-trackers-airtags-missing-bags/index.html"
+openai.api_key = openai.api_key = os.environ["OPENAI_API_KEY"]
+inputData = "https://www.cnn.com/travel/article/luggage-trackers-airtags-missing-bags/index.html" 
 
 MODEL = "gpt-4"
 response = openai.ChatCompletion.create(
