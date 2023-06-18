@@ -1,16 +1,28 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+import openai, os
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/summarize', methods=['GET'])
+openai.api_key = os.environ["OPENAPI_KEY"]
+
+@app.route('/summarize', methods=['POST'])
 def summarize():
-    # text = request.json['text']
+    url = request.json['url']
 
-    # Here you would typically call a function to summarize the text.
-    # For simplicity, we'll just return the first 100 characters.
-    summary = "text"
+    MODEL = "gpt-4"
+    response = openai.ChatCompletion.create(
+        model=MODEL,
+        messages=[
+            {"role": "user",
+             "content": f'In 3 bullet points please summarize the content in this: {url}'},
+        ],
+        temperature=0,
+    )
 
-    return jsonify(summary=summary)
+    # print(response.choices[0].message.content)
+    return jsonify(summary=response.choices[0].message.content[3:])
 
 if __name__ == '__main__':
     app.run(port=3000)

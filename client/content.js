@@ -1,14 +1,12 @@
 window.onload = function() {
   fetch('http://localhost:3000/summarize', {
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ text: document.body.innerText })
+    body: JSON.stringify({ url: window.location.href })
   })
   .then(response => {
-    console.log('fetching');
-    console.log(response.text());
     return response.text();
   })
   .then(summary => {
