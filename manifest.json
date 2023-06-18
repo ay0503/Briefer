@@ -14,21 +14,19 @@
       "48": "icon-48.png",
       "128": "icon-128.png"
     },
-    "default_popup": "popup.html"
+    "default_popup": "client/popup.html"
   },
-  "permissions": [
-    "activeTab"
-  ],
   "background": {
     "scripts": [
-      "briefr.py"
+      "client/background.js"
     ],
     "persistent": false
   },
+  "permissions": ["activeTab", "http://*/*", "https://*/*"],
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["contentScript.js"]
+      "matches": ["<all_urls>"],
+      "js": ["client/content.js"]
     }
   ]
 }
