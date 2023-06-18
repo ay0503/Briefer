@@ -1,8 +1,16 @@
+import openai
 
-class Summary:
+openai.api_key = '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'
 
-    def __init__(self) -> None:
-        pass
+inputData = "https://www.cnn.com/travel/article/luggage-trackers-airtags-missing-bags/index.html"
 
-    def summarize(self, text: str) -> str:
-        pass
+MODEL = "gpt-4"
+response = openai.ChatCompletion.create(
+    model=MODEL,
+    messages=[
+        {"role": "user", "content": f'In 3 bullet points please summarize the content in this: {inputData}'},
+    ],
+    temperature=0,
+)
+
+print(response)
